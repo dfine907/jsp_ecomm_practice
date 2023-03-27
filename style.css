@@ -1,0 +1,16 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+   text-align: center;
+   background-color: antiquewhite;
+}
+ul {
+    list-style-type: none;
+}
+
+li {
+    list-style-type: none;
+}
