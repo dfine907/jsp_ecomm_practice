@@ -1,21 +1,37 @@
 let main = document.querySelector('.main')
 
 function renderProducts() {
-  for (let i = 0; i < data.length; i += 1) {
-    let productCard = document.querySelector('.product-card')
-    main.append(productCard)
+  
+  for(let i = 0; i < data.length; i +=1 ) {
+    let card = document.createElement('div')
+    card.classList.add('product-card')
+    main.append(card)
 
-    let productList = document.querySelector('.product-list')
-    productCard.append(productList)
+    let mainList = document.createElement('ul')
+    card.append(mainList)
 
-    let itemsList = document.createElement('li')
-    itemsList.innerHTML += `Item: ${data[i].title}<br>
+    let product = document.createElement('li')
+    product.classList.add('list-items')
+    mainList.append(product)
+
+    product.innerHTML += `Item: ${data[i].title}<br>
      Price each: ${data[i].price} <br>
      <img src=${data[i].image}>`
 
-    productCard.append(itemsList)
-  }
-}
+    let buyButton = document.createElement('button')
+    buyButton.innerHTML = "BUY"
+    buyButton.classList.add('buy-btn')
+    product.append(buyButton)
+    buyButton.addEventListener('click', function () {
+      addTotals()
+    })
 
-let productsBtn = document.querySelector('#display-button')
-productsBtn.addEventListener('click', renderProducts)
+  }
+
+
+}
+renderProducts()
+
+function addTotals() {
+  console.log("It works")
+}
