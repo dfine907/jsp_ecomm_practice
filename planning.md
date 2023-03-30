@@ -31,35 +31,8 @@ STEP 2
 2. Every time a user clicks on the “Buy” button, the total should be incremented
 - loop through each item and add each price +=
 
-**************************************************
 
-let main = document.querySelector('.main')
-
-function renderProducts() {
-  for (let i = 0; i < data.length; i += 1) {
-    let productCard = document.querySelector('.product-card')
-    main.append(productCard)
-
-    let productList = document.querySelector('.product-list')
-    productCard.append(productList)
-
-    let itemsList = document.createElement('li')
-    itemsList.innerHTML += `Item: ${data[i].title}<br>
-     Price each: ${data[i].price} <br>
-     <img src=${data[i].image}>`
-
+-- Create a function for a callback for the buy button.
+The call back will take the selected price, store in an array and add all the items.
     
-     
-     let buyButton = document.createElement('button')
-     productList.append(buyButton)
-     productList.innerText += "BUY"
-
-      productCard.append(itemsList)
-    
-  }
-}
-renderProducts()
-
-If a render page button is needed
-let productsBtn = document.querySelector('#display-button')
- productsBtn.addEventListener('click', renderProducts)
+*************************************************

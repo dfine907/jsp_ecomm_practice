@@ -1,5 +1,11 @@
 let main = document.querySelector('.main')
 
+let dataStoreArray = []
+
+let newItemObject = {
+  
+}
+
 function renderProducts() {
   
   for(let i = 0; i < data.length; i +=1 ) {
