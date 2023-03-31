@@ -1,43 +1,51 @@
 let main = document.querySelector('.main')
 
-let dataStoreArray = []
-
-let newItemObject = {
-  
-}
+let grandTotal = 0
 
 function renderProducts() {
-  
-  for(let i = 0; i < data.length; i +=1 ) {
+  for (let i = 0; i < data.length; i += 1) {
     let card = document.createElement('div')
     card.classList.add('product-card')
     main.append(card)
 
-    let mainList = document.createElement('ul')
-    card.append(mainList)
+    let itemTitle = document.createElement('p')
+    itemTitle.classList.add('list-items')
+    itemTitle.innerHTML += ` ${data[i].title}`
+    card.append(itemTitle)
 
-    let product = document.createElement('li')
-    product.classList.add('list-items')
-    mainList.append(product)
+    let itemPrice = document.createElement('p')
+    itemPrice.classList.add('list-items')
+    itemPrice.innerHTML += ` ${data[i].price}`
+    card.append(itemPrice)
 
-    product.innerHTML += `Item: ${data[i].title}<br>
-     Price each: ${data[i].price} <br>
-     <img src=${data[i].image}>`
+    let itemImg = document.createElement('img')
+    itemImg.classList.add('list-items')
+    itemImg.src = `${data[i].image}`
+    card.append(itemImg)
 
     let buyButton = document.createElement('button')
-    buyButton.innerHTML = "BUY"
+    buyButton.innerHTML = 'BUY'
     buyButton.classList.add('buy-btn')
-    product.append(buyButton)
+    card.append(buyButton)
+
+    // const addTotals = (price) => {
+    //   let finalSum = (grandTotal += price)
+    //   console.log(finalSum)
+    // }
+
+    const addTotals = (price) => {
+      return () => {
+        grandTotal += price
+      }
+    }
+
     buyButton.addEventListener('click', function () {
-      addTotals()
+      addTotals(data[i].price)
     })
-
   }
-
-
 }
 renderProducts()
 
-function addTotals() {
-  console.log("It works")
-}
+// function addTotals(price) {
+//   console.log(price)
+// }
