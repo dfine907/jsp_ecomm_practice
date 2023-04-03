@@ -1,4 +1,5 @@
-let main = document.querySelector('.main')
+const main = document.querySelector('.main')
+const totalDiv = document.querySelector('.total')
 
 let grandTotal = 0
 
@@ -26,26 +27,20 @@ function renderProducts() {
     let buyButton = document.createElement('button')
     buyButton.innerHTML = 'BUY'
     buyButton.classList.add('buy-btn')
-    card.append(buyButton)
 
-    // const addTotals = (price) => {
-    //   let finalSum = (grandTotal += price)
-    //   console.log(finalSum)
-    // }
-
+    buyButton.setAttribute('price', ` ${data[i].price}`)
+    
     const addTotals = (price) => {
-      return () => {
-        grandTotal += price
-      }
+      grandTotal += price
+      totalDiv.innerHTML = `Total: $ ${grandTotal}`
     }
 
     buyButton.addEventListener('click', function () {
-      addTotals(data[i].price)
+      console.log('Works')
+      addTotals(Number((data[i].price).toFixed(2)))
     })
+
+    card.append(buyButton)
   }
 }
 renderProducts()
-
-// function addTotals(price) {
-//   console.log(price)
-// }
