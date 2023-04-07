@@ -33,7 +33,7 @@ img {
   padding: 10px;
 }
 
-.product-card {
+.display-card {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
