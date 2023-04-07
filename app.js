@@ -19,26 +19,26 @@ let grandTotal = 0
 //     itemPrice.innerHTML += ` ${data[i].price}`
 //     card.append(itemPrice)
 
-//     let itemImg = document.createElement('img')
-//     itemImg.classList.add('list-items')
-//     itemImg.src = `${data[i].image}`
-//     card.append(itemImg)
+// let itemImg = document.createElement('img')
+// itemImg.classList.add('list-items')
+// itemImg.src = `${data[i].image}`
+// card.append(itemImg)
 
-//     let buyButton = document.createElement('button')
-//     buyButton.innerHTML = 'BUY'
-//     buyButton.classList.add('buy-btn')
+// let buyButton = document.createElement('button')
+// buyButton.innerHTML = 'BUY'
+// buyButton.classList.add('buy-btn')
 
-//     buyButton.setAttribute('price', ` ${data[i].price}`)
-    
-//     const addTotals = (price) => {
-//       grandTotal += price
-//       totalDiv.innerHTML = `Total: $ ${grandTotal}`
-//     }
+// buyButton.setAttribute('price', ` ${data[i].price}`)
 
-//     buyButton.addEventListener('click', function () {
-//       console.log('Works')
-//       addTotals(Number((data[i].price).toFixed(2)))
-//     })
+// const addTotals = (price) => {
+//   grandTotal += price
+//   totalDiv.innerHTML = `Total: $ ${grandTotal}`
+// }
+
+// buyButton.addEventListener('click', function () {
+//   console.log('Works')
+//   addTotals(Number((data[i].price).toFixed(2)))
+// })
 
 //     card.append(buyButton)
 //   }
@@ -46,25 +46,67 @@ let grandTotal = 0
 
 // renderProducts()
 
-// ****  WITH API ******
+// *************   USING FETCH API USING THE FAKE DATA API TO GET THE DATA  APr 1 ******/
 
-
-const URL_API = "https://fakestoreapi.com/products"
+const URL_API = 'https://fakestoreapi.com/products'
 
 function getData(url) {
   fetch(url)
-  .then(response => {
-    return response.json()
-  }).then(data => {
-    data.forEach(product => {
-      const display = document.createElement('div')
-      display.classList.add('display-card')
-      display.innerHTML += `${product.title}`
-      main.append(display)
+    .then((response) => {
+      return response.json()
     })
-  })
+    .then((data) => {
+      console.log(typeof data);
+      data.forEach((product) => {
+        const display = document.createElement('div')
+        display.classList.add('display-card')
+        display.innerHTML += `${product.title}`
+        main.append(display)
 
+        let itemImg = document.createElement('img')
+        itemImg.classList.add('list-items')
+        itemImg.src = `${product.image}`
+        display.append(itemImg)
 
+        let buyButton = document.createElement('button')
+        buyButton.innerHTML = 'BUY'
+        buyButton.classList.add('buy-btn')
+
+        buyButton.setAttribute('price', ` ${product.price}`)
+
+        const addTotals = (price) => {
+          grandTotal += price
+          totalDiv.innerHTML = `Total: $ ${grandTotal}`
+        }
+
+        buyButton.addEventListener('click', function () {
+          console.log('Works')
+          addTotals(Number(product.price.toFixed(2)))
+        })
+
+        display.append(buyButton)
+      })
+    })
+    .catch((error) => console.error(error))
 }
 
 getData(URL_API)
+
+
+//   ***********************  async / await  ****************** /
+
+
+
+
+  const getApiData = async () => {
+  const response = await fetch(URL_API)
+  const jsonStr = await response.text()
+
+  const json = JSON.parse(jsonStr)
+
+  json.forEach(item => {
+    console.log(item)
+  })
+}
+
+getApiData()
