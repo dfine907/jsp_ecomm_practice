@@ -97,14 +97,13 @@ getData(URL_API)
 
 
 
-
   const getApiData = async () => {
   const response = await fetch(URL_API)
-  const jsonStr = await response.text()
+  const jsonStr = await response.json()
 
-  const json = JSON.parse(jsonStr)
+  // const json = JSON.parse(jsonStr)
 
-  json.forEach(item => {
+  jsonStr.forEach(item => {
     console.log(item)
   })
 }
