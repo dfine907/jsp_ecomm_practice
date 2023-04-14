@@ -101,8 +101,6 @@ getData(URL_API)
   const response = await fetch(URL_API)
   const jsonStr = await response.json()
 
-  // const json = JSON.parse(jsonStr)
-
   jsonStr.forEach(item => {
     console.log(item)
   })
